@@ -94,6 +94,7 @@ const App = () => {
 
   return (
    <Layout>
+      <Header style={{ color: 'white', textAlign: 'center' }}>Pundora's Box</Header>
       <Content>
         <Table columns={tableColumns} dataSource={userData} />
         <Form onSubmit={onSubmit} visible={showModal} onCancel={() => setShowModal(false)} selectedUser={selectedUser} />
