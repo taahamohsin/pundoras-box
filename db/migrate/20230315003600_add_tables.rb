@@ -1,15 +1,16 @@
 class AddTables < ActiveRecord::Migration[7.0]
   def change
     create_table :users, id: :uuid do |t|
-      t.string :first_name
+      t.string :first_name, null: false
       t.string :middle_name
-      t.string :last_name
+      t.string :last_name, null: false
+      t.integer :integer, default: 0, null: false
 
       t.timestamps
     end
 
     create_table :rating_definitions, id: :uuid do |t|
-      t.integer :value
+      t.integer :value, null: false
       t.string :title
       t.text :description
 
@@ -18,7 +19,7 @@ class AddTables < ActiveRecord::Migration[7.0]
 
     create_table :jokes, id: :uuid do |t|
       t.references :user, foreign_key: true, type: :uuid
-      t.string :title
+      t.string :title, null: false
       t.text :description
 
       t.timestamps

@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "application#index"
   resources :jokes
+  resources :users
+  resources :ratings
+  resources :rating_definitions, path: 'rating-definitions'
 end

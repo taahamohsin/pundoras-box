@@ -46,6 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_003600) do
     t.string "first_name"
     t.string "middle_name"
     t.string "last_name"
+    t.integer "score", null: false, default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
