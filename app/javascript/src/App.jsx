@@ -1,4 +1,4 @@
-;import 'antd/dist/antd.css';
+import 'antd/dist/reset.css';
 import React, { useEffect, useState, Fragment } from 'react';
 import { Button, Layout, Table, Space } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
