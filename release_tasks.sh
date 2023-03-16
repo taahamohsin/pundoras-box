@@ -1,2 +1,2 @@
-bundle exec rake db:setup
-bundle exec rake db:migrate
+bin/rails db:setup
+bin/rails db:migrate
