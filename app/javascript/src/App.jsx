@@ -32,7 +32,7 @@ const App = () => {
   );
 
   const transformDataByRank = (data) => {
-    data.sort((first, second) => second.score ?? 0 - first.score ?? 0);
+    data.sort((first, second) => (second.score ?? 0) - (first.score ?? 0));
     const displayData = data.map(({imgUrl, ...rest}) => ({...rest}));
     return displayData.map((user, index) => ({
       key: index,
