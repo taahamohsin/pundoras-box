@@ -4,7 +4,7 @@ class AddTables < ActiveRecord::Migration[7.0]
       t.string :first_name, null: false
       t.string :middle_name
       t.string :last_name, null: false
-      t.integer :integer, default: 0, null: false
+      t.integer :score, default: 0, null: false
 
       t.timestamps
     end
