@@ -8,19 +8,16 @@ default: &default
   adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  database: pundoras-box
+  database: ENV['DB_NAME'] || pundoras-box
 
 development:
   <<: *default
-  database: pundoras-box
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: pundoras-box
 
 production:
   <<: *default
-  database: pundoras-box
