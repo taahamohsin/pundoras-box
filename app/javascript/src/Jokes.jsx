@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Layout, Table } from 'antd';
 import { DeleteTwoTone, EditTwoTone } from '@ant-design/icons';
 import StarFilled from "@ant-design/icons/es/icons/StarFilled";
-
+import { GiBroccoli } from 'react-icons/gi';
 
 import DeleteConfirmation from './DeleteConfirmation';
 import getBaseUrl from './utils';
@@ -80,7 +80,7 @@ const Jokes = () => {
             <Column key="firstName" title="First Name" render={_ => userData.firstName} />
             <Column key="lastName" title="Last Name"  render={_ => userData.lastName} />
           </ColumnGroup>
-          <Column title="Rating" key="value" render={item => Array(item.rating.value).fill(1).map(_ => <StarFilled />)} />
+          <Column title="Rating" key="value" render={item => Array(item.rating.value).fill(1).map(_ => <GiBroccoli />)} />
           <Column title="Actions" render={(_, record) => deleteButton(record)} key="actions" />
         </Table>
         <DeleteConfirmation
