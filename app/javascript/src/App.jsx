@@ -1,7 +1,8 @@
 import 'antd/dist/reset.css';
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Layout, Table, Space } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, FileTextOutlined } from '@ant-design/icons';
+import { useNavigate} from 'react-router-dom';
 
 import Form from './RatingForm.jsx';
 import getBaseUrl from './utils';
@@ -18,8 +19,9 @@ const App = () => {
   const [userData, setUserData] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const navigate = useNavigate();
 
-  const editButton = (user) => (
+  const addButton = (user) => (
     <Button
     type="primary"
     shape="circle"
@@ -31,6 +33,24 @@ const App = () => {
     />
   );
 
+  const listButton = (user) => (
+     <Button
+      type="primary"
+      shape="circle"
+      icon={<FileTextOutlined/>}
+      onClick={() => {
+        navigate(
+          `/users/${user.id}/jokes`,
+          {
+            state: {
+              selectedUser: user
+            }
+          })
+        ;
+      }}
+    />
+  )
+
   const transformDataByRank = (data) => {
     data.sort((first, second) => (second.score ?? 0) - (first.score ?? 0));
     const displayData = data.map(({imgUrl, ...rest}) => ({...rest}));
@@ -40,7 +60,8 @@ const App = () => {
       ...user,
       actions: (
         <Space>
-          {editButton(user)}
+          {addButton(user)}
+          {listButton(user)}
         </Space>
       )
     }));
@@ -94,7 +115,6 @@ const App = () => {
 
   return (
    <Layout>
-      <Header style={{ color: 'white', textAlign: 'center' }}>Pundora's Box</Header>
       <Content>
         <Table columns={tableColumns} dataSource={userData} />
         <Form onSubmit={onSubmit} visible={showModal} onCancel={() => setShowModal(false)} selectedUser={selectedUser} />

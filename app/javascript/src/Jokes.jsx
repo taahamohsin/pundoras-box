@@ -4,6 +4,7 @@ import { DeleteTwoTone, EditTwoTone } from '@ant-design/icons';
 
 import DeleteConfirmation from './DeleteConfirmation';
 import getBaseUrl from './utils';
+import { useLocation } from 'react-router-dom';
 
 
 const { Content } = Layout;
@@ -13,13 +14,21 @@ const baseUrl = getBaseUrl();
 
 const Jokes = () => {
   const [jokeData, setJokeData] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [selectedJoke, setSelectedJoke] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const location = useLocation()
+
+  const { state } = location;
+  const { selectedUser } = state || {};
 
   const fetchData = async () => {
-    const raw = await fetch(`${baseUrl}/jokes`);
-    const data = await raw.json();
+    const raw = await fetch(`${baseUrl}/users/${selectedUser.id}/jokes`);
+    const rawData = await raw.json();
+    const { jokes: data, firstName, lastName} = rawData;
+    console.log("DATA", data);
     setJokeData(data.reverse());
+    setUserData({ firstName, lastName })
   };
   useEffect(() => {
     fetchData();
@@ -62,16 +71,16 @@ const Jokes = () => {
     <Layout>
       <Content>
         <Table dataSource={jokeData}>
-        <ColumnGroup title="Bad Joke Info">
-          <Column title="Title" dataIndex="title" key="title" />
-          <Column title="Optional Details" dataIndex="description" key="description" />
+        <ColumnGroup key="info" title="Bad Joke Info">
+          <Column key="title" title="Title" dataIndex="title" />
+          <Column key="body" title="Body" dataIndex="description" />
         </ColumnGroup>
-          <ColumnGroup title="The Joke-Cracker's Details">
-            <Column title="First Name" dataIndex="firstName" key="firstName" />
-            <Column title="Last Name" dataIndex="lastName" key="lastName" />
+          <ColumnGroup key="details" title="The Joke-Cracker's Details">
+            <Column key="firstName" title="First Name" render={_ => userData.firstName} />
+            <Column key="lastName" title="Last Name"  render={_ => userData.lastName} />
           </ColumnGroup>
-          <Column title="Points Earned" dataIndex="value" key="value" sorter={sortByValue} />
-          <Column title="Actions" render={(_, record) => deleteButton(record)} />
+          <Column title="Points Earned" dataIndex={['rating', 'ratingDefinition', 'value']} key="value" sorter={sortByValue} />
+          <Column title="Actions" render={(_, record) => deleteButton(record)} key="actions" />
         </Table>
         <DeleteConfirmation
           onSubmit={onDelete}

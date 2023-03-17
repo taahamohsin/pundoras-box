@@ -1,5 +1,8 @@
 class RatingSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description
+  attributes :id
+  belongs_to :rating_definition
 
-  has_one :rating_definition
+  def ratingDefinition
+    ActiveModel::SerializableResource.new(object.rating_definition).as_json
+  end
 end

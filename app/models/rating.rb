@@ -1,4 +1,4 @@
 class Rating < ApplicationRecord
   belongs_to :joke
-  has_one :rating_definition
+  belongs_to :rating_definition
 end

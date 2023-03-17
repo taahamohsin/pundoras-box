@@ -1,4 +1,4 @@
-class UserSerializer <  ActiveModel::Serializer
+class UserWithJokesSerializer <  ActiveModel::Serializer
   attributes :id, :firstName, :middleName, :lastName, :score
   has_many :jokes
 

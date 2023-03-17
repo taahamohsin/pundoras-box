@@ -1,3 +1,3 @@
 class RatingDefinition < ApplicationRecord
-  belongs_to :rating, optional: true
+  has_many :ratings
 end

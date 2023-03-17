@@ -7,7 +7,7 @@ const { confirm } = Modal;
 const DeleteConfirmation = ({ onSubmit, onCancel, isVisible, title, prompt }) => (
   <Modal
     title={title}
-    visible={isVisible}
+    open={isVisible}
     okText="Yes"
     onCancel={onCancel}
     onOk={() => {
