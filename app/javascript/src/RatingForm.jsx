@@ -2,6 +2,9 @@ import "./Form.css";
 
 import React, { Fragment, useEffect, useState } from "react";
 import { Form, Input, Modal, Rate } from "antd";
+import { GiBroccoli } from 'react-icons/gi';
+import { IconContext } from 'react-icons';
+
 import getBaseUrl from "./utils";
 
 const baseUrl = getBaseUrl();
@@ -62,6 +65,9 @@ export default ({ visible, onCancel, onSubmit, selectedUser }) => {
               setValue(
                 ratings && ratings.find(rating => rating.value === value)
               )}
+            character={ _  =>(
+                <GiBroccoli />
+            )}
             allowClear
           />
         </Form.Item>

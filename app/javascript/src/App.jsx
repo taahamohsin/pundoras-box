@@ -43,7 +43,8 @@ const App = () => {
           `/users/${user.id}/jokes`,
           {
             state: {
-              selectedUser: user
+              selectedUser: user,
+              from: `/users/${user.id}/jokes`
             }
           })
         ;
